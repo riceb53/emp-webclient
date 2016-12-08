@@ -1,0 +1,13 @@
+<p>Make a new employee here </p>
+
+<%= form_tag "/employees", method: :post do %>
+  <%= label_tag :form_first_name %>
+  <%= text_field_tag :form_first_name %>
+  <%= label_tag :form_last_name %>
+  <%= text_field_tag :form_last_name %>
+  <%= label_tag :form_email %>
+  <%= text_field_tag :form_email %>
+  <%= label_tag :form_birthdate %>
+  <%= text_field_tag :form_birthdate %>
+  <%= submit_tag "Make a new employee"%>
+<% end %>

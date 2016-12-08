@@ -1,0 +1,13 @@
+Edit your employee
+
+<%= form_tag "/employees/#{@employee["id"]}", method: :patch do %>
+  <%= label_tag :form_first_name %>
+  <%= text_field_tag :form_first_name, @employee["firstName"] %>
+  <%= label_tag :form_last_name %>
+  <%= text_field_tag :form_last_name, @employee["lastName"] %>
+  <%= label_tag :form_email %>
+  <%= text_field_tag :form_email, @employee["company_email"] %>
+  <%= label_tag :form_birthdate %>
+  <%= text_field_tag :form_birthdate, @employee["birthdate"] %>
+  <%= submit_tag "Edit this employee"%>
+<% end %>
