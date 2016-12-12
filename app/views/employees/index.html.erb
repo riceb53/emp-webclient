@@ -1,7 +1,7 @@
 <p>All the employees</p>
 
 <%= @employees.each do |employee| %>
-  <p><%= employee["firstName"] %></p>
-  <p><%= employee["lastName"] %></p>
-  <p><%= employee["company_email"] %></p>
+  <p><%= employee.first_name %></p>
+  <p><%= employee.last_name %></p>
+  <p><%= employee.company_email %></p>
 <% end %>

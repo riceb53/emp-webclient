@@ -1,22 +1,23 @@
 class EmployeesController < ApplicationController
   def show
-    @employee = Unirest.get("http://localhost:3000/api/v1/employees/#{params[:id]}.json").body
+    @employee = Employee.find(params[:id])
     render 'show.html.erb'
   end
 
   def index
-    @employees = Unirest.get("http://localhost:3000/api/v1/employees").body
+    @employees = Employee.all
     render 'index.html.erb'
   end
 
   def create
-    @employee = Unirest.post(
-      "http://localhost:3000/api/v1/employees",
-      headers:{ "Accept" => "application/json" },
-      parameters:{ :form_first_name => params[:form_first_name], :form_last_name => params[:form_last_name] }
-      ).body
 
-    redirect_to "/employees/#{@employee["id"]}"
+    @employee = Employee.create(
+      first_name: params[:form_first_name],
+      last_name: params[:form_last_name],
+      email: params[:form_email],
+      first_name: params[:form_birthdate]
+      )
+    redirect_to "/employees/#{@employee.id}"
   end
 
   def new
@@ -24,21 +25,24 @@ class EmployeesController < ApplicationController
   end
 
   def edit
-    @employee = Unirest.get("http://localhost:3000/api/v1/employees/#{params[:id]}.json").body
+    @employee = Employee.find(params[:id])
     render 'edit.html.erb'
   end
 
   def update
-    @employee = Unirest.patch(
-      "http://localhost:3000/api/v1/employees/#{params[:id]}",
-      headers:{ "Accept" => "application/json" },
-      parameters:{ :form_first_name => params[:form_first_name], :form_last_name => params[:form_last_name] }
-      ).body
-    redirect_to "/employees/#{@employee['id']}"
+    @employee = Employee.find(params['id'])
+    p 'employee'
+    p @employee.id
+    @employee.update(
+       :form_first_name => params['form_first_name'],
+       :form_last_name => params['form_last_name']
+      )
+    redirect_to "/employees/#{@employee.id}"
   end
 
   def destroy
-    @employee = Unirest.delete("http://localhost:3000/api/v1/employees/#{params[:id]}").body
+    @employee = Employee.find(params[:id])
+    @employee.destroy
 
     redirect_to "/employees"
   end

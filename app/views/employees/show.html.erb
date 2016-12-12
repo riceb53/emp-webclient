@@ -1,8 +1,9 @@
 <p>Here is the requested employee</p>
 
-<p><%= @employee["firstName"] %></p>
-<p><%= @employee["lastName"] %></p>
-<p><%= @employee["company_email"] %></p>
+
+<p><%= @employee.first_name %></p>
+<p><%= @employee.last_name %></p>
+<p><%= @employee.company_email %></p>
 
 
-<%= link_to "Remove item","/employees/#{@employee['id']}" , method: :delete %>
+<%= link_to "Remove item","/employees/#{@employee.id}" , method: :delete %>
